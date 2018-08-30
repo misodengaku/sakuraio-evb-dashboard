@@ -1,0 +1,1020 @@
+[
+    {
+        "id": "1c91d8e1.133a97",
+        "type": "tab",
+        "label": "フロー 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8b10a926.823748",
+        "type": "websocket in",
+        "z": "1c91d8e1.133a97",
+        "name": "sakuraio",
+        "server": "d8cfbd82.32f69",
+        "client": "",
+        "x": 220,
+        "y": 180,
+        "wires": [
+            [
+                "c1afb96f.08eab8"
+            ]
+        ]
+    },
+    {
+        "id": "9449b0ba.e1ad6",
+        "type": "switch",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "channels",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "920d70a5.17343",
+                "7903dfea.3b5",
+                "263f7f27.8759c",
+                "d019e718.457458",
+                "27325e84.2ed3e2",
+                "3a6b368d.a8ee7a",
+                "43699af2.0dd2a4",
+                "adcbf38b.06ea2",
+                "e7ea7e60.4b4d",
+                "ecb5e00.2562f2",
+                "9fe83084.2cf2d",
+                "228b77e7.87fcb8",
+                "a41f6813.e01718",
+                "5aa4a288.b05dcc"
+            ]
+        ]
+    },
+    {
+        "id": "c1afb96f.08eab8",
+        "type": "json",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "9449b0ba.e1ad6"
+            ]
+        ]
+    },
+    {
+        "id": "99dae905.c90c18",
+        "type": "ui_gauge",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "20213b6f.3ac254",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "gtype": "gage",
+        "title": "temp",
+        "label": "℃",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "40",
+        "colors": [
+            "#0080ff",
+            "#80ff80",
+            "#ca3838"
+        ],
+        "seg1": "15",
+        "seg2": "30",
+        "x": 950,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "920d70a5.17343",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 1)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 180,
+        "wires": [
+            [
+                "99dae905.c90c18",
+                "ee9934f4.91c1d8"
+            ]
+        ]
+    },
+    {
+        "id": "50c66b5e.030814",
+        "type": "ui_gauge",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "20213b6f.3ac254",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "gtype": "gage",
+        "title": "humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "263f7f27.8759c",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 3)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "50c66b5e.030814",
+                "86fac573.e69958"
+            ]
+        ]
+    },
+    {
+        "id": "27325e84.2ed3e2",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 5)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 560,
+        "wires": [
+            [
+                "b46c87b3.1e5b18"
+            ]
+        ]
+    },
+    {
+        "id": "43699af2.0dd2a4",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 7)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 640,
+        "wires": [
+            [
+                "bc0348c1.389448"
+            ]
+        ]
+    },
+    {
+        "id": "adcbf38b.06ea2",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 8)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 680,
+        "wires": [
+            [
+                "64aea412.2a815c"
+            ]
+        ]
+    },
+    {
+        "id": "e7ea7e60.4b4d",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 9)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 720,
+        "wires": [
+            [
+                "e243cc23.a3f64"
+            ]
+        ]
+    },
+    {
+        "id": "ecb5e00.2562f2",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 10)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 760,
+        "wires": [
+            [
+                "92b04a3a.171908"
+            ]
+        ]
+    },
+    {
+        "id": "3a6b368d.a8ee7a",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 6)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 600,
+        "wires": [
+            [
+                "c04c8d08.d6a79"
+            ]
+        ]
+    },
+    {
+        "id": "d019e718.457458",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 4)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 520,
+        "wires": [
+            [
+                "122ee3ed.d768ec"
+            ]
+        ]
+    },
+    {
+        "id": "3cfe4406.d0669c",
+        "type": "ui_gauge",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "20213b6f.3ac254",
+        "order": 3,
+        "width": "6",
+        "height": "6",
+        "gtype": "gage",
+        "title": "pressure",
+        "label": "hPa",
+        "format": "{{value}}",
+        "min": "900",
+        "max": "1100",
+        "colors": [
+            "#0080ff",
+            "#00ff80",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 960,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7903dfea.3b5",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 2)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 260,
+        "wires": [
+            [
+                "3cfe4406.d0669c",
+                "bd8617ba.5498d8"
+            ]
+        ]
+    },
+    {
+        "id": "9fe83084.2cf2d",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 11)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 800,
+        "wires": [
+            [
+                "87936c70.eab9d"
+            ]
+        ]
+    },
+    {
+        "id": "228b77e7.87fcb8",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 12)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 840,
+        "wires": [
+            [
+                "b390c16e.e6e59"
+            ]
+        ]
+    },
+    {
+        "id": "a41f6813.e01718",
+        "type": "function",
+        "z": "1c91d8e1.133a97",
+        "name": "extract value",
+        "func": "lat = 0.0;\nlon = 0.0;\nfor (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 13)\n    {\n        lat = msg.payload.payload.channels[i].value;\n    } else if (msg.payload.payload.channels[i].channel == 14)\n    {\n        lon = msg.payload.payload.channels[i].value;\n    }\n}\n\nmsg.payload = {lat: lat, lon: lon};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 880,
+        "wires": [
+            [
+                "3fbca165.bc8b2e",
+                "b75d62a7.da77c"
+            ]
+        ]
+    },
+    {
+        "id": "122ee3ed.d768ec",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "6add9bf.759ac64",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "label": "acc_x",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-1",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 520,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b46c87b3.1e5b18",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "6add9bf.759ac64",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "label": "acc_y",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-1",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 560,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c04c8d08.d6a79",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "6add9bf.759ac64",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "label": "acc_z",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-1",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 600,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bc0348c1.389448",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "ce190c12.cbba3",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "label": "gyro_x",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 640,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "64aea412.2a815c",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "ce190c12.cbba3",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "label": "gyro_y",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 680,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e243cc23.a3f64",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "ce190c12.cbba3",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "label": "gyro_z",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 720,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "92b04a3a.171908",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "25aae553.4b180a",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "label": "magnet_x",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 960,
+        "y": 760,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "87936c70.eab9d",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "25aae553.4b180a",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "label": "magnet_y",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 960,
+        "y": 800,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b390c16e.e6e59",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "25aae553.4b180a",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "label": "magnet_z",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 960,
+        "y": 840,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5aa4a288.b05dcc",
+        "type": "debug",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "c1d9963b.1b5468",
+        "type": "worldmap",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "x": 1150,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "3fbca165.bc8b2e",
+        "type": "debug",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 970,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "b75d62a7.da77c",
+        "type": "worldmap-tracks",
+        "z": "1c91d8e1.133a97",
+        "depth": 20,
+        "name": "",
+        "x": 950,
+        "y": 880,
+        "wires": [
+            [
+                "c1d9963b.1b5468"
+            ]
+        ]
+    },
+    {
+        "id": "669f7e14.e33ba",
+        "type": "ui_template",
+        "z": "1c91d8e1.133a97",
+        "group": "d621589.51610a8",
+        "name": "worldmap iframe",
+        "order": 1,
+        "width": "18",
+        "height": "18",
+        "format": "<div style=\"width: 100%; height: 100%\">\n    <iframe src=\"/worldmap\" style=\"width: 100%; height: 100%\"></iframe>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 990,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ee9934f4.91c1d8",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "20213b6f.3ac254",
+        "order": 4,
+        "width": "6",
+        "height": "4",
+        "label": "temp",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 950,
+        "y": 220,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bd8617ba.5498d8",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "20213b6f.3ac254",
+        "order": 6,
+        "width": "6",
+        "height": "4",
+        "label": "pressure",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 960,
+        "y": 300,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "86fac573.e69958",
+        "type": "ui_chart",
+        "z": "1c91d8e1.133a97",
+        "name": "",
+        "group": "20213b6f.3ac254",
+        "order": 5,
+        "width": "6",
+        "height": "4",
+        "label": "humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 960,
+        "y": 380,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d8cfbd82.32f69",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "wss://api.sakura.io/ws/v1/%WEBSOCKET_TOKEN%",
+        "wholemsg": "false"
+    },
+    {
+        "id": "20213b6f.3ac254",
+        "type": "ui_group",
+        "z": "",
+        "name": "BME280",
+        "tab": "e888a452.a161c8",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "6add9bf.759ac64",
+        "type": "ui_group",
+        "z": "",
+        "name": "MPU9250-accelerometer",
+        "tab": "e888a452.a161c8",
+        "order": 2,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "ce190c12.cbba3",
+        "type": "ui_group",
+        "z": "",
+        "name": "MPU9250-gyro",
+        "tab": "e888a452.a161c8",
+        "order": 3,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "25aae553.4b180a",
+        "type": "ui_group",
+        "z": "",
+        "name": "MPU9250-magnetometer",
+        "tab": "e888a452.a161c8",
+        "order": 4,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "d621589.51610a8",
+        "type": "ui_group",
+        "z": "",
+        "name": "XA1110-GNSS log",
+        "tab": "e888a452.a161c8",
+        "order": 5,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "e888a452.a161c8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "ホーム",
+        "icon": "dashboard"
+    }
+]

@@ -24,7 +24,11 @@ RUN npm install
 EXPOSE 1880
 
 # Environment variable holding file path for flows configuration
-ENV FLOWS=flows.json
+ADD evb_flow.json.template /usr/src/node-red/evb_flow.json.template
+ADD run.sh /usr/src/node-red/run.sh
+ENV FLOWS=/data/evb_flow.json
 ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules
 
-CMD ["npm", "start", "--", "--userDir", "/data"]
+CMD ["bash", "run.sh"]
+
+#CMD ["npm", "start", "--", "--userDir", "/data"]
