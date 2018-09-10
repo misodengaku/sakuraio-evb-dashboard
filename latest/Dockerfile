@@ -20,6 +20,7 @@ RUN useradd --home-dir /usr/src/node-red --no-create-home node-red \
 RUN chown -R node-red. /var/lib/nginx
 RUN chown -R node-red. /var/log/nginx
 RUN chmod 777 /run
+RUN mkdir /log && chmod 777 /log && touch /log/restore-log && chown -R node-red:node-red /log
 
 USER node-red
 

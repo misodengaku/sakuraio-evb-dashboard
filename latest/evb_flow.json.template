@@ -1,30 +1,23 @@
 [
     {
-        "id": "1c91d8e1.133a97",
-        "type": "tab",
-        "label": "フロー 1",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "8b10a926.823748",
+        "id": "43376973.a0f058",
         "type": "websocket in",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "sakuraio",
         "server": "d8cfbd82.32f69",
         "client": "",
-        "x": 220,
-        "y": 180,
+        "x": 160,
+        "y": 280,
         "wires": [
             [
-                "c1afb96f.08eab8"
+                "d869c120.1b612"
             ]
         ]
     },
     {
-        "id": "9449b0ba.e1ad6",
+        "id": "8e89d2be.b4c79",
         "type": "switch",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "property": "payload.type",
         "propertyType": "msg",
@@ -38,47 +31,48 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 570,
-        "y": 180,
+        "x": 750,
+        "y": 280,
         "wires": [
             [
-                "920d70a5.17343",
-                "7903dfea.3b5",
-                "263f7f27.8759c",
-                "d019e718.457458",
-                "27325e84.2ed3e2",
-                "3a6b368d.a8ee7a",
-                "43699af2.0dd2a4",
-                "adcbf38b.06ea2",
-                "e7ea7e60.4b4d",
-                "ecb5e00.2562f2",
-                "9fe83084.2cf2d",
-                "228b77e7.87fcb8",
-                "a41f6813.e01718",
-                "5aa4a288.b05dcc"
+                "92f25cb9.debcd",
+                "81962548.2cc128",
+                "25cb5864.1d3018",
+                "54e3c894.062c88",
+                "c7e05151.ba875",
+                "6f913905.520608",
+                "311339d5.617346",
+                "40cacd85.368414",
+                "e4d8d755.30d8c8",
+                "d7238c9e.db3a3",
+                "79dbb31e.0b198c",
+                "9a5a753c.6ec1c8",
+                "b2fa2924.230a88",
+                "f7171ce7.2ca97"
             ]
         ]
     },
     {
-        "id": "c1afb96f.08eab8",
+        "id": "d869c120.1b612",
         "type": "json",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 400,
-        "y": 180,
+        "x": 340,
+        "y": 280,
         "wires": [
             [
-                "9449b0ba.e1ad6"
+                "8e89d2be.b4c79",
+                "87b3d685.8ec2c8"
             ]
         ]
     },
     {
-        "id": "99dae905.c90c18",
+        "id": "c8973cf8.14fcf",
         "type": "ui_gauge",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "20213b6f.3ac254",
         "order": 1,
@@ -97,31 +91,31 @@
         ],
         "seg1": "15",
         "seg2": "30",
-        "x": 950,
-        "y": 180,
+        "x": 1250,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "920d70a5.17343",
+        "id": "92f25cb9.debcd",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 1)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 1)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 180,
+        "x": 1070,
+        "y": 120,
         "wires": [
             [
-                "99dae905.c90c18",
-                "ee9934f4.91c1d8"
+                "c8973cf8.14fcf",
+                "b03a5065.009ae"
             ]
         ]
     },
     {
-        "id": "50c66b5e.030814",
+        "id": "f2545127.8ced8",
         "type": "ui_gauge",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "20213b6f.3ac254",
         "order": 2,
@@ -140,143 +134,143 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 960,
-        "y": 340,
+        "x": 1260,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "263f7f27.8759c",
+        "id": "25cb5864.1d3018",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 3)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 3)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 340,
+        "x": 1070,
+        "y": 280,
         "wires": [
             [
-                "50c66b5e.030814",
-                "86fac573.e69958"
+                "f2545127.8ced8",
+                "d5683689.e9e1e8"
             ]
         ]
     },
     {
-        "id": "27325e84.2ed3e2",
+        "id": "c7e05151.ba875",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 5)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 5)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 560,
+        "x": 1070,
+        "y": 500,
         "wires": [
             [
-                "b46c87b3.1e5b18"
+                "40508e62.e2d14"
             ]
         ]
     },
     {
-        "id": "43699af2.0dd2a4",
+        "id": "311339d5.617346",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 7)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 7)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 640,
+        "x": 1070,
+        "y": 580,
         "wires": [
             [
-                "bc0348c1.389448"
+                "39aa1c0c.e81b74"
             ]
         ]
     },
     {
-        "id": "adcbf38b.06ea2",
+        "id": "40cacd85.368414",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 8)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 8)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 680,
+        "x": 1070,
+        "y": 620,
         "wires": [
             [
-                "64aea412.2a815c"
+                "f3c9e468.2fcdd8"
             ]
         ]
     },
     {
-        "id": "e7ea7e60.4b4d",
+        "id": "e4d8d755.30d8c8",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 9)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 9)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 720,
+        "x": 1070,
+        "y": 660,
         "wires": [
             [
-                "e243cc23.a3f64"
+                "30ed6ac7.10ee86"
             ]
         ]
     },
     {
-        "id": "ecb5e00.2562f2",
+        "id": "d7238c9e.db3a3",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 10)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 10)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 760,
+        "x": 1070,
+        "y": 700,
         "wires": [
             [
-                "92b04a3a.171908"
+                "4ceab698.8b9bc8"
             ]
         ]
     },
     {
-        "id": "3a6b368d.a8ee7a",
+        "id": "6f913905.520608",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 6)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 6)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 600,
+        "x": 1070,
+        "y": 540,
         "wires": [
             [
-                "c04c8d08.d6a79"
+                "802a243d.0d4078"
             ]
         ]
     },
     {
-        "id": "d019e718.457458",
+        "id": "54e3c894.062c88",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 4)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 4)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 520,
+        "x": 1070,
+        "y": 460,
         "wires": [
             [
-                "122ee3ed.d768ec"
+                "2058cff9.df894"
             ]
         ]
     },
     {
-        "id": "3cfe4406.d0669c",
+        "id": "79379d67.2c01c4",
         "type": "ui_gauge",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "20213b6f.3ac254",
         "order": 3,
@@ -295,80 +289,80 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 960,
-        "y": 260,
+        "x": 1260,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "7903dfea.3b5",
+        "id": "81962548.2cc128",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 2)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 2)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 260,
+        "x": 1070,
+        "y": 200,
         "wires": [
             [
-                "3cfe4406.d0669c",
-                "bd8617ba.5498d8"
+                "79379d67.2c01c4",
+                "41ab8893.0eb808"
             ]
         ]
     },
     {
-        "id": "9fe83084.2cf2d",
+        "id": "79dbb31e.0b198c",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 11)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 11)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 800,
+        "x": 1070,
+        "y": 740,
         "wires": [
             [
-                "87936c70.eab9d"
+                "d00891fb.ec357"
             ]
         ]
     },
     {
-        "id": "228b77e7.87fcb8",
+        "id": "9a5a753c.6ec1c8",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
-        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 12)\n    {\n        msg.payload = msg.payload.payload.channels[i].value;\n        return msg;\n    }\n}\n",
+        "func": "for (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 12)\n    {\n        channel_msg = msg.payload.payload.channels[i];\n        msg.payload = channel_msg.value.toFixed(1);\n        msg.timestamp = channel_msg.datetime;\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 840,
+        "x": 1070,
+        "y": 780,
         "wires": [
             [
-                "b390c16e.e6e59"
+                "3df3968f.03812a"
             ]
         ]
     },
     {
-        "id": "a41f6813.e01718",
+        "id": "b2fa2924.230a88",
         "type": "function",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "extract value",
         "func": "lat = 0.0;\nlon = 0.0;\nfor (var i = 0; i < msg.payload.payload.channels.length; i++)\n{\n    if (msg.payload.payload.channels[i].channel == 13)\n    {\n        lat = msg.payload.payload.channels[i].value;\n    } else if (msg.payload.payload.channels[i].channel == 14)\n    {\n        lon = msg.payload.payload.channels[i].value;\n    }\n}\n\nmsg.payload = {lat: lat, lon: lon};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 880,
+        "x": 1070,
+        "y": 820,
         "wires": [
             [
-                "3fbca165.bc8b2e",
-                "b75d62a7.da77c"
+                "d7788d0b.f2d2",
+                "a3910224.9525"
             ]
         ]
     },
     {
-        "id": "122ee3ed.d768ec",
+        "id": "2058cff9.df894",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "6add9bf.759ac64",
         "order": 1,
@@ -400,17 +394,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 520,
+        "x": 1250,
+        "y": 460,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "b46c87b3.1e5b18",
+        "id": "40508e62.e2d14",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "6add9bf.759ac64",
         "order": 2,
@@ -442,17 +436,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 560,
+        "x": 1250,
+        "y": 500,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "c04c8d08.d6a79",
+        "id": "802a243d.0d4078",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "6add9bf.759ac64",
         "order": 3,
@@ -484,17 +478,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 600,
+        "x": 1250,
+        "y": 540,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "bc0348c1.389448",
+        "id": "39aa1c0c.e81b74",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "ce190c12.cbba3",
         "order": 1,
@@ -526,17 +520,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 640,
+        "x": 1250,
+        "y": 580,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "64aea412.2a815c",
+        "id": "f3c9e468.2fcdd8",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "ce190c12.cbba3",
         "order": 2,
@@ -568,17 +562,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 680,
+        "x": 1250,
+        "y": 620,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "e243cc23.a3f64",
+        "id": "30ed6ac7.10ee86",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "ce190c12.cbba3",
         "order": 3,
@@ -610,17 +604,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 720,
+        "x": 1250,
+        "y": 660,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "92b04a3a.171908",
+        "id": "4ceab698.8b9bc8",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "25aae553.4b180a",
         "order": 1,
@@ -652,17 +646,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 960,
-        "y": 760,
+        "x": 1260,
+        "y": 700,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "87936c70.eab9d",
+        "id": "d00891fb.ec357",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "25aae553.4b180a",
         "order": 2,
@@ -694,17 +688,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 960,
-        "y": 800,
+        "x": 1260,
+        "y": 740,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "b390c16e.e6e59",
+        "id": "3df3968f.03812a",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "25aae553.4b180a",
         "order": 3,
@@ -736,31 +730,31 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 960,
-        "y": 840,
+        "x": 1260,
+        "y": 780,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "5aa4a288.b05dcc",
+        "id": "f7171ce7.2ca97",
         "type": "debug",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 770,
-        "y": 980,
+        "x": 1070,
+        "y": 920,
         "wires": []
     },
     {
-        "id": "c1d9963b.1b5468",
+        "id": "469652d8.972a5c",
         "type": "worldmap",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "lat": "",
         "lon": "",
@@ -771,42 +765,42 @@
         "usermenu": "show",
         "layers": "show",
         "panit": "false",
-        "x": 1150,
-        "y": 880,
+        "x": 1450,
+        "y": 820,
         "wires": []
     },
     {
-        "id": "3fbca165.bc8b2e",
+        "id": "d7788d0b.f2d2",
         "type": "debug",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 970,
-        "y": 940,
+        "x": 1270,
+        "y": 880,
         "wires": []
     },
     {
-        "id": "b75d62a7.da77c",
+        "id": "a3910224.9525",
         "type": "worldmap-tracks",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "depth": 20,
         "name": "",
-        "x": 950,
-        "y": 880,
+        "x": 1250,
+        "y": 820,
         "wires": [
             [
-                "c1d9963b.1b5468"
+                "469652d8.972a5c"
             ]
         ]
     },
     {
-        "id": "669f7e14.e33ba",
+        "id": "275db5b1.06daaa",
         "type": "ui_template",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "group": "d621589.51610a8",
         "name": "worldmap iframe",
         "order": 1,
@@ -816,16 +810,16 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 990,
-        "y": 140,
+        "x": 1290,
+        "y": 80,
         "wires": [
             []
         ]
     },
     {
-        "id": "ee9934f4.91c1d8",
+        "id": "b03a5065.009ae",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "20213b6f.3ac254",
         "order": 4,
@@ -857,17 +851,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 950,
-        "y": 220,
+        "x": 1250,
+        "y": 160,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "bd8617ba.5498d8",
+        "id": "41ab8893.0eb808",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "20213b6f.3ac254",
         "order": 6,
@@ -899,17 +893,17 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 960,
-        "y": 300,
+        "x": 1260,
+        "y": 240,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "86fac573.e69958",
+        "id": "d5683689.e9e1e8",
         "type": "ui_chart",
-        "z": "1c91d8e1.133a97",
+        "z": "579839c8.0926e8",
         "name": "",
         "group": "20213b6f.3ac254",
         "order": 5,
@@ -941,12 +935,95 @@
             "#c5b0d5"
         ],
         "useOldStyle": false,
-        "x": 960,
-        "y": 380,
+        "x": 1260,
+        "y": 320,
         "wires": [
             [],
             []
         ]
+    },
+    {
+        "id": "c587546c.706598",
+        "type": "inject",
+        "z": "579839c8.0926e8",
+        "name": "on startup",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 460,
+        "wires": [
+            [
+                "f4952e00.c38a1"
+            ]
+        ]
+    },
+    {
+        "id": "f4952e00.c38a1",
+        "type": "file in",
+        "z": "579839c8.0926e8",
+        "name": "restore from log file",
+        "filename": "/log/restore-log",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "x": 370,
+        "y": 460,
+        "wires": [
+            [
+                "233e83df.e9333c",
+                "ba492177.766d6"
+            ]
+        ]
+    },
+    {
+        "id": "87b3d685.8ec2c8",
+        "type": "file",
+        "z": "579839c8.0926e8",
+        "name": "write to restore-log file",
+        "filename": "/log/restore-log",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "x": 640,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "233e83df.e9333c",
+        "type": "json",
+        "z": "579839c8.0926e8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "8e89d2be.b4c79"
+            ]
+        ]
+    },
+    {
+        "id": "ba492177.766d6",
+        "type": "debug",
+        "z": "579839c8.0926e8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 600,
+        "y": 580,
+        "wires": []
     },
     {
         "id": "d8cfbd82.32f69",
